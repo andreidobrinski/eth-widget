@@ -1,4 +1,5 @@
 import styles from '../src/css/index.scss'
+import { ETHCard } from './lib/ethCard'
 
 const plugin = document.getElementById('eth-widget-plugin')
 
@@ -9,3 +10,12 @@ pluginButton.innerHTML= `
 ETH Widget
 `
 plugin.appendChild(pluginButton)
+
+pluginButton.onclick = renderWidget
+
+function renderWidget() {
+  // define custom HTML element
+  customElements.define('eth-card', ETHCard)
+
+  plugin.innerHTML = `<eth-card></eth-card>`
+}

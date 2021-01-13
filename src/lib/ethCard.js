@@ -4,7 +4,7 @@ const template = document.createElement('template')
 
 template.innerHTML = `
   <style>${styles.toString()}</style>
-  <div class='eth-plugin'>
+  <div class='eth-plugin-widget'>
     <p>Ethereum Stats</p>
     <div class='data'>
       <p class='price'></p>
@@ -20,6 +20,12 @@ template.innerHTML = `
 export class ETHCard extends HTMLElement {
   constructor() {
     super()
+
+    // add shadow DOM
+    const shadowDOM = this.attachShadow({ mode: 'open' })
+
+    // render the template in shadow DOM
+    shadowDOM.appendChild(template.content.cloneNode(true))
   }
 
   connectedCallback() {
